@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emotion Predictor</title>
+</head>
+<body>
+    <h1>Image Emotion Prediction</h1>
+
+    {% if prediction is not none %}
+        <p><strong>Predicted Emotion: {{ prediction }}</strong></p>
+    {% endif %}
+
+    {% if error_message %}
+        <p style="color: red;"><strong>Error: {{ error_message }}</strong></p>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data" action="/predict">
+        <input type="file" name="image" accept="image/*" required>
+        <br><br>
+        <input type="submit" value="Upload & Predict">
+    </form>
+
+    {% if image_url %}
+        <p>Uploaded Image:</p>
+        <img src="{{ image_url }}" alt="Uploaded Image" style="max-width:300px; height:auto; border:1px solid #ccc;">
+    {% endif %}
+</body>
+</html>
